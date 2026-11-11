@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juan Pablo Orjuela Rojas</title>
+<meta name="description" content="Portafolio de Juan Pablo Orjuela Rojas, estudiante de Ciencias de la Computación e IA. / Portfolio of Juan Pablo Orjuela Rojas, Computer Science and AI student.">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div class="pagina">
+
+<header class="cabecera">
+  <div>
+    <h1>Juan Pablo Orjuela Rojas</h1>
+    <p class="sub" lang="es">Estudiante de 5.º semestre de Ciencias de la Computación e Inteligencia Artificial en la Universidad Sergio Arboleda (Bogotá, Colombia). Busco trabajo remoto de medio tiempo en evaluación de IA, datos o QA.</p>
+    <p class="sub" lang="en">Fifth-semester Computer Science and Artificial Intelligence student at Universidad Sergio Arboleda (Bogotá, Colombia). I am looking for remote part-time work in AI evaluation, data, or QA.</p>
+  </div>
+  <div class="idioma" role="group" aria-label="Idioma / Language">
+    <button type="button" data-set="es" aria-pressed="true">ES</button> | <button type="button" data-set="en" aria-pressed="false">EN</button>
+  </div>
+</header>
+
+<main>
+<h2><span lang="es">Proyectos</span><span lang="en">Projects</span></h2>
+
+<!-- 1. EvalCO -->
+<article>
+  <h3>EvalCO<span class="anio">2026</span></h3>
+  <div lang="es">
+    <p>Los modelos de lenguaje se evalúan casi siempre en inglés, y eso dice poco sobre cómo responden en español colombiano: pesos y COP, IVA del 19 %, colombianismos, políticas de atención al cliente. Armé un banco de 150 casos diseñados uno por uno para medirlo, con verificación automática donde se puede y juez LLM solo donde no.</p>
+    <ul>
+      <li>150 casos en 5 categorías de 30: seguimiento de instrucciones, razonamiento (pesos COP, IVA, fechas), colombianismos (opción múltiple), atención al cliente con política de empresa y alucinaciones (premisas falsas, con 6 controles de premisa verdadera).</li>
+      <li>109 casos con verificadores deterministas (16 tipos: números con formato colombiano, regex, JSON, conteo de palabras y viñetas, entre otros) y 41 que además usan un juez LLM con rúbrica de sí/no.</li>
+      <li>Intervalos de Wilson al 95 %. Solo biblioteca estándar de Python.</li>
+      <li>Modelos evaluados localmente con Ollama en una RTX 3070 Ti de 8 GB: qwen3:8b, hermes3:8b y gemma3:4b con los 150 casos, y deepseek-r1:8b en una muestra de 50.</li>
+    </ul>
+    <div class="resultados"><div class="tabla"><table>
+      <thead><tr><th>Modelo</th><th>Instr.</th><th>Razon.</th><th>Colomb.</th><th>Soporte</th><th>Aluc.</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>qwen3:8b</td><td>70 %</td><td>63 %</td><td>77 %</td><td>73 %</td><td>67 %</td><td><strong>70 %</strong></td></tr>
+        <tr><td>hermes3:8b</td><td>63 %</td><td>33 %</td><td>70 %</td><td>60 %</td><td>73 %</td><td><strong>60 %</strong></td></tr>
+        <tr><td>gemma3:4b</td><td>63 %</td><td>40 %</td><td>63 %</td><td>80 %</td><td>23 %</td><td><strong>54 %</strong></td></tr>
+      </tbody></table></div>
+    <p class="nota">30 casos por categoría; intervalos de Wilson de unos ±15 puntos, así que solo las diferencias grandes son concluyentes.</p></div>
+    <div class="resultados"><ul>
+      <li>gemma3:4b aceptó 21 de 24 premisas falsas con datos inventados (un «segundo Nobel» de García Márquez, tres Óscar para <em>El abrazo de la serpiente</em>), aunque fue el mejor siguiendo políticas de soporte.</li>
+      <li>hermes3:8b fue el más prudente ante premisas falsas, pero falló dos de cada tres problemas de razonamiento con pesos y fechas.</li>
+      <li>qwen3:8b fue el más parejo y acertó los 6 controles de premisa verdadera: su prudencia no consiste en negarse a todo.</li>
+    </ul></div>
+    <p class="rol"><strong>Mi papel:</strong> definí el objetivo, las categorías y los criterios de calificación, coordiné asistentes de IA (Claude) que escribieron los casos y el código, corrí las evaluaciones y revisé los resultados.</p>
+    <p class="enlaces"><a href="https://github.com/JuanPOrjuela/evalco">Repositorio</a></p>
+  </div>
+  <div lang="en">
+    <p>Language models are mostly evaluated in English, which says little about how they handle Colombian Spanish: pesos (COP), 19 % VAT, regional slang, customer-service policies. I built a benchmark of 150 individually designed cases to measure that, using automatic checks where possible and an LLM judge only where not.</p>
+    <ul>
+      <li>150 cases in 5 categories of 30: instruction following, reasoning (COP, VAT, dates), Colombian slang (multiple choice), customer service under a company policy, and hallucinations (false premises, with 6 true-premise controls).</li>
+      <li>109 cases use deterministic verifiers (16 types: Colombian-formatted numbers, regex, JSON, word and bullet counts, among others); 41 also use an LLM judge with a yes/no rubric.</li>
+      <li>95 % Wilson confidence intervals. Python standard library only.</li>
+      <li>Models evaluated locally with Ollama on an 8 GB RTX 3070 Ti: qwen3:8b, hermes3:8b, and gemma3:4b on all 150 cases, plus deepseek-r1:8b on a 50-case sample.</li>
+    </ul>
+    <div class="resultados"><div class="tabla"><table>
+      <thead><tr><th>Model</th><th>Instr.</th><th>Reason.</th><th>Slang</th><th>Support</th><th>Halluc.</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>qwen3:8b</td><td>70%</td><td>63%</td><td>77%</td><td>73%</td><td>67%</td><td><strong>70%</strong></td></tr>
+        <tr><td>hermes3:8b</td><td>63%</td><td>33%</td><td>70%</td><td>60%</td><td>73%</td><td><strong>60%</strong></td></tr>
+        <tr><td>gemma3:4b</td><td>63%</td><td>40%</td><td>63%</td><td>80%</td><td>23%</td><td><strong>54%</strong></td></tr>
+      </tbody></table></div>
+    <p class="nota">30 items per category; Wilson intervals of about ±15 points, so only large differences are conclusive.</p></div>
+    <div class="resultados"><ul>
+      <li>gemma3:4b accepted 21 of 24 false premises with fabricated details (a “second Nobel” for García Márquez, three Oscars for <em>Embrace of the Serpent</em>), yet it was the best at following support policies.</li>
+      <li>hermes3:8b was the most cautious with false premises but failed two out of three reasoning items involving pesos and dates.</li>
+      <li>qwen3:8b was the most consistent and passed all 6 true-premise controls, so its caution is not just refusing everything.</li>
+    </ul></div>
+    <p class="rol"><strong>My role:</strong> I defined the goal, categories, and grading criteria, directed AI assistants (Claude) that wrote the cases and the code, ran the evaluations, and reviewed the results.</p>
+    <p class="enlaces"><a href="https://github.com/JuanPOrjuela/evalco">Repository</a></p>
+  </div>
+</article>
+
+<!-- 2. evangelionPL -->
+<article>
+  <h3>evangelionPL<span class="anio">2026</span></h3>
+  <div lang="es">
+    <p>Un lenguaje de dominio específico para ciencia de datos, hecho para el curso de Lenguajes de Programación. La regla del curso era no usar librerías ya hechas, así que las tablas, la regresión, el perceptrón y hasta las gráficas están implementados desde cero.</p>
+    <ul>
+      <li>Gramática en ANTLR4 e intérprete en Python, con palabras clave en español.</li>
+      <li>Sin pandas, NumPy ni Matplotlib: tablas propias, lista enlazada propia, regresión, perceptrón con 4 funciones de activación, red neuronal y árboles propios.</li>
+      <li>Gráficas (barras, líneas, histograma, dispersión, caja) dibujadas a mano en PNG y SVG, con un codificador PNG propio (DEFLATE, CRC-32, Adler-32) y una fuente de 5x7 hecha a mano.</li>
+      <li>Más de 160 pruebas y un manual en PDF.</li>
+    </ul>
+    <p class="rol"><strong>Mi papel:</strong> trabajo en grupo de 3, con Julian Beltrán y Santiago Ortegón. Es obra del grupo, no solo mía.</p>
+    <p class="enlaces"><a href="https://github.com/JuanPOrjuela/evangelionPL">Repositorio en GitHub</a></p>
+  </div>
+  <div lang="en">
+    <p>A domain-specific language for data science, built for the Programming Languages course. The course rule was no prebuilt libraries, so the tables, regression, perceptron, and even the charts are implemented from scratch.</p>
+    <ul>
+      <li>ANTLR4 grammar and a Python interpreter, with Spanish keywords.</li>
+      <li>No pandas, NumPy, or Matplotlib: custom tables, a custom linked list, regression, a perceptron with 4 activation functions, a neural network, and decision trees.</li>
+      <li>Charts (bar, line, histogram, scatter, box plot) drawn by hand to PNG and SVG, with a custom PNG encoder (DEFLATE, CRC-32, Adler-32) and a hand-made 5x7 bitmap font.</li>
+      <li>Over 160 tests and a PDF manual.</li>
+    </ul>
+    <p class="rol"><strong>My role:</strong> group project of 3, with Julian Beltrán and Santiago Ortegón. It is the group's work, not mine alone.</p>
+    <p class="enlaces"><a href="https://github.com/JuanPOrjuela/evangelionPL">Repository on GitHub</a></p>
+  </div>
+</article>
+
+<!-- 3. Momentum paper -->
+<article>
+  <h3>Momentum paper<span class="anio">2026</span></h3>
+  <div lang="es">
+    <p>Una estrategia de inversión simulada y auditable. Es paper trading: no se usa dinero real. Quería ver si una regla simple de momentum, aplicada a varios activos, reduce el riesgo frente a comprar y mantener, y que cada número se pueda comprobar.</p>
+    <ul>
+      <li>Activos: cripto (BTC, ETH, SOL…), acciones y ETF (QQQ, SPY, AAPL, MSFT, NVDA, TSLA) y diversificadores (GLD, TLT, DBC). Regla de momentum por ensamble de ventanas de 20/50/100/200 días; QQQ a 1,5x; comisiones incluidas.</li>
+      <li>Backtest 2021-2026: CAGR +23,2 %, Sharpe 1,39, caída máxima −27,7 %. Comprar y mantener lo mismo: +26,7 %, Sharpe 1,01, caída máxima −48,9 %. Es decir, rinde algo menos, pero con mucho menos riesgo.</li>
+      <li>En vivo (simulado) desde el 27 de octubre de 2026: al 10 de noviembre, −4,5 % contra −9,2 % de comprar y mantener. El mercado cayó y la regla perdió la mitad.</li>
+      <li>Corre sola cada día con GitHub Actions y guarda su estado en el repositorio.</li>
+      <li>Auditoría: cuadre contable (efectivo + posiciones = patrimonio), sin look-ahead, manejo de splits y dividendos.</li>
+    </ul>
+    <p class="aviso">Es una simulación y un backtest no garantiza resultados futuros. Dos semanas en vivo no demuestran nada.</p>
+    <p class="rol"><strong>Mi papel:</strong> autor del proyecto. El repositorio es privado, por eso no hay enlace.</p>
+  </div>
+  <div lang="en">
+    <p>A simulated, auditable investment strategy. It is paper trading: no real money is used. I wanted to see whether a simple momentum rule applied across several assets reduces risk compared with buy-and-hold, and to make every number checkable.</p>
+    <ul>
+      <li>Assets: crypto (BTC, ETH, SOL…), stocks and ETFs (QQQ, SPY, AAPL, MSFT, NVDA, TSLA), and diversifiers (GLD, TLT, DBC). Momentum rule based on an ensemble of 20/50/100/200-day windows; QQQ at 1.5x; fees included.</li>
+      <li>2021-2026 backtest: CAGR +23.2 %, Sharpe 1.39, max drawdown −27.7 %. Buy-and-hold of the same assets: +26.7 %, Sharpe 1.01, max drawdown −48.9 %. In short, it returns somewhat less, but with much less risk.</li>
+      <li>Live (simulated) since October 27, 2026: as of November 10, −4.5 % versus −9.2 % for buy-and-hold. The market fell and the rule lost half as much.</li>
+      <li>Runs on its own every day with GitHub Actions and stores its state in the repository.</li>
+      <li>Audit: accounting reconciliation (cash + positions = equity), no look-ahead, handling of splits and dividends.</li>
+    </ul>
+    <p class="aviso">This is a simulation, and a backtest does not guarantee future results. Two weeks of live data prove nothing.</p>
+    <p class="rol"><strong>My role:</strong> author of the project. The repository is private, so there is no link.</p>
+  </div>
+</article>
+
+<!-- 4. Spa -->
+<article>
+  <h3><span lang="es">Sitio y agenda para un spa de mascotas</span><span lang="en">Website and booking for a pet spa</span><span class="anio">2026</span></h3>
+  <div lang="es">
+    <p>Sitio web con agenda de servicios y pagos en línea para un spa de mascotas en Bogotá. El negocio y sus ingresos son del dueño; yo hice el desarrollo.</p>
+    <ul>
+      <li>Next.js desplegado en Cloudflare Workers (OpenNext) y base de datos Turso (libSQL).</li>
+      <li>Pagos con Wompi, catálogo, agenda de servicios, panel de administración y reseñas.</li>
+      <li>SEO técnico: Search Console, sitemap y datos estructurados JSON-LD.</li>
+      <li>Más de 400 pruebas automáticas.</li>
+      <li>Agente de WhatsApp con menú, todavía en desarrollo.</li>
+    </ul>
+    <p class="rol"><strong>Mi papel:</strong> desarrollo del sitio para un cliente. El repositorio es privado.</p>
+    <p class="enlaces"><a href="https://kiragopets.com">kiragopets.com</a></p>
+  </div>
+  <div lang="en">
+    <p>A website with service booking and online payments for a pet spa in Bogotá. The business and its revenue belong to the owner; I did the development.</p>
+    <ul>
+      <li>Next.js deployed on Cloudflare Workers (OpenNext) with a Turso (libSQL) database.</li>
+      <li>Wompi payments, catalog, service booking, admin panel, and reviews.</li>
+      <li>Technical SEO: Search Console, sitemap, and JSON-LD structured data.</li>
+      <li>Over 400 automated tests.</li>
+      <li>WhatsApp agent with a menu, still in development.</li>
+    </ul>
+    <p class="rol"><strong>My role:</strong> developed the site for a client. The repository is private.</p>
+    <p class="enlaces"><a href="https://kiragopets.com">kiragopets.com</a></p>
+  </div>
+</article>
+
+<!-- 5. SO e IA local -->
+<article>
+  <h3><span lang="es">Sistemas operativos e IA local</span><span lang="en">Operating systems and local AI</span><span class="anio">2026</span></h3>
+  <div lang="es">
+    <p>Tres trabajos de clase de sistemas operativos, todos con máquinas virtuales y modelos corriendo en local.</p>
+    <ul>
+      <li>Instalación completa de Gentoo Linux con KDE Plasma (Wayland) en una VM, con informe técnico en formato APA.</li>
+      <li>Taller de IA local con Ollama en máquinas virtuales.</li>
+      <li>Servidor con IA local para un cliente simulado.</li>
+    </ul>
+    <p class="rol"><strong>Mi papel:</strong> la instalación de Gentoo y su informe fueron en grupo de 4; el taller de Ollama también fue en grupo; el servidor para el cliente simulado fue un taller de clase.</p>
+    <p class="enlaces"><a href="https://github.com/JuanPOrjuela/tallerOllama1">Taller de Ollama en GitHub</a></p>
+  </div>
+  <div lang="en">
+    <p>Three operating-systems coursework projects, all using virtual machines and locally run models.</p>
+    <ul>
+      <li>A full Gentoo Linux install with KDE Plasma (Wayland) in a VM, with a technical report in APA format.</li>
+      <li>A local-AI workshop with Ollama on virtual machines.</li>
+      <li>A server with local AI for a simulated client.</li>
+    </ul>
+    <p class="rol"><strong>My role:</strong> the Gentoo install and report were done in a group of 4; the Ollama workshop was also a group project; the simulated-client server was a class workshop.</p>
+    <p class="enlaces"><a href="https://github.com/JuanPOrjuela/tallerOllama1">Ollama workshop on GitHub</a></p>
+  </div>
+</article>
+
+<h2><span lang="es">Habilidades</span><span lang="en">Skills</span></h2>
+<div lang="es">
+  <ul>
+    <li>Diseño de evaluaciones de modelos: verificadores deterministas, juez LLM con rúbrica, intervalos de confianza.</li>
+    <li>Python (incluida la biblioteca estándar) y pruebas automáticas.</li>
+    <li>Gramáticas ANTLR4 e intérpretes.</li>
+    <li>Modelos locales con Ollama; máquinas virtuales y Linux (Gentoo, KDE Plasma).</li>
+    <li>Next.js, Cloudflare Workers, Turso (libSQL), pagos con Wompi, SEO técnico.</li>
+    <li>GitHub Actions y backtesting con auditoría de datos (splits, dividendos, look-ahead).</li>
+    <li>Español nativo; inglés para lectura técnica.</li>
+  </ul>
+</div>
+<div lang="en">
+  <ul>
+    <li>Model evaluation design: deterministic verifiers, LLM judge with a rubric, confidence intervals.</li>
+    <li>Python (including the standard library) and automated testing.</li>
+    <li>ANTLR4 grammars and interpreters.</li>
+    <li>Local models with Ollama; virtual machines and Linux (Gentoo, KDE Plasma).</li>
+    <li>Next.js, Cloudflare Workers, Turso (libSQL), Wompi payments, technical SEO.</li>
+    <li>GitHub Actions and backtesting with data auditing (splits, dividends, look-ahead).</li>
+    <li>Native Spanish; English for technical reading.</li>
+  </ul>
+</div>
+</main>
+
+<footer>
+  <a href="https://github.com/JuanPOrjuela">github.com/JuanPOrjuela</a>
+</footer>
+
+</div>
+<script>
+(function () {
+  var botones = document.querySelectorAll('.idioma button');
+  function aplicar(l) {
+    document.documentElement.lang = l;
+    for (var i = 0; i < botones.length; i++) {
+      botones[i].setAttribute('aria-pressed', botones[i].getAttribute('data-set') === l ? 'true' : 'false');
+    }
+  }
+  var inicial = 'es';
+  try {
+    var g = localStorage.getItem('idioma');
+    if (g === 'es' || g === 'en') inicial = g;
+  } catch (e) {}
+  aplicar(inicial);
+  for (var i = 0; i < botones.length; i++) {
+    botones[i].addEventListener('click', function () {
+      var l = this.getAttribute('data-set');
+      aplicar(l);
+      try { localStorage.setItem('idioma', l); } catch (e) {}
+    });
+  }
+})();
+</script>
+</body>
+</html>
