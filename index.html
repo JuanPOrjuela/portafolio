@@ -33,7 +33,7 @@
       <li>150 casos en 5 categorías de 30: seguimiento de instrucciones, razonamiento (pesos COP, IVA, fechas), colombianismos (opción múltiple), atención al cliente con política de empresa y alucinaciones (premisas falsas, con 6 controles de premisa verdadera).</li>
       <li>109 casos con verificadores deterministas (16 tipos: números con formato colombiano, regex, JSON, conteo de palabras y viñetas, entre otros) y 41 que además usan un juez LLM con rúbrica de sí/no.</li>
       <li>Intervalos de Wilson al 95 %. Solo biblioteca estándar de Python.</li>
-      <li>Modelos evaluados localmente con Ollama en una RTX 3070 Ti de 8 GB: qwen3:8b, hermes3:8b y gemma3:4b con los 150 casos, y deepseek-r1:8b en una muestra de 50.</li>
+      <li>Modelos evaluados localmente con Ollama en una RTX 3070 Ti de 8 GB: qwen3:8b, hermes3:8b y gemma3:4b, cada uno con los 150 casos.</li>
     </ul>
     <div class="resultados"><div class="tabla"><table>
       <thead><tr><th>Modelo</th><th>Instr.</th><th>Razon.</th><th>Colomb.</th><th>Soporte</th><th>Aluc.</th><th>Total</th></tr></thead>
@@ -57,7 +57,7 @@
       <li>150 cases in 5 categories of 30: instruction following, reasoning (COP, VAT, dates), Colombian slang (multiple choice), customer service under a company policy, and hallucinations (false premises, with 6 true-premise controls).</li>
       <li>109 cases use deterministic verifiers (16 types: Colombian-formatted numbers, regex, JSON, word and bullet counts, among others); 41 also use an LLM judge with a yes/no rubric.</li>
       <li>95 % Wilson confidence intervals. Python standard library only.</li>
-      <li>Models evaluated locally with Ollama on an 8 GB RTX 3070 Ti: qwen3:8b, hermes3:8b, and gemma3:4b on all 150 cases, plus deepseek-r1:8b on a 50-case sample.</li>
+      <li>Models evaluated locally with Ollama on an 8 GB RTX 3070 Ti: qwen3:8b, hermes3:8b, and gemma3:4b, each on all 150 cases.</li>
     </ul>
     <div class="resultados"><div class="tabla"><table>
       <thead><tr><th>Model</th><th>Instr.</th><th>Reason.</th><th>Slang</th><th>Support</th><th>Halluc.</th><th>Total</th></tr></thead>
@@ -74,6 +74,33 @@
     </ul></div>
     <p class="rol"><strong>My role:</strong> I defined the goal, categories, and grading criteria, directed AI assistants (Claude) that wrote the cases and the code, ran the evaluations, and reviewed the results.</p>
     <p class="enlaces"><a href="https://github.com/JuanPOrjuela/evalco">Repository</a></p>
+  </div>
+</article>
+
+<!-- Relevo -->
+<article>
+  <h3>Relevo<span class="anio">2026</span></h3>
+  <div lang="es">
+    <p>App para Jira (Atlassian Forge) que arma el relevo de trabajo de quien sale de vacaciones: marca qué no puede esperar, sugiere quién tiene contexto para cubrir cada tarea y, al volver, entrega un resumen de lo que pasó. Enviada al concurso Codegeist 2026 de Atlassian.</p>
+    <ul>
+      <li>Página global y panel de issue en React (Custom UI), un agente de Rovo con su skill y un servidor MCP de solo lectura.</li>
+      <li>Sugerencias a partir del historial de Jira y de Teamwork Graph; los cambios en Jira se aplican solo cuando el usuario confirma.</li>
+      <li>Sin IA propia ni servidores: corre en la plataforma de Atlassian y no cuesta nada mantenerla.</li>
+      <li>Pruebas unitarias y de extremo a extremo con navegador, y prueba en un sitio real de Jira.</li>
+    </ul>
+    <p class="rol"><strong>Mi papel:</strong> definí el objetivo, coordiné asistentes de IA (Claude) que investigaron los concursos, propusieron la idea y escribieron el código, revisé la app en Jira y aprobé el envío.</p>
+    <p class="enlaces"><a href="https://devpost.com/software/relevo">Devpost</a> · <a href="https://juanporjuela.github.io/relevo">Sitio</a> · <a href="https://youtu.be/JLfDQFWwvFE">Video</a></p>
+  </div>
+  <div lang="en">
+    <p>A Jira app (Atlassian Forge) that prepares the handoff for someone going on vacation: it flags what cannot wait, suggests who has the context to cover each task, and gives a summary of what happened on return. Submitted to Atlassian's Codegeist 2026 hackathon.</p>
+    <ul>
+      <li>Global page and issue panel in React (Custom UI), a Rovo agent with its skill, and a read-only MCP server.</li>
+      <li>Suggestions based on Jira history and Teamwork Graph; changes are applied in Jira only after the user confirms.</li>
+      <li>No custom AI and no servers: it runs on Atlassian's platform at no running cost.</li>
+      <li>Unit and end-to-end browser tests, plus testing on a real Jira site.</li>
+    </ul>
+    <p class="rol"><strong>My role:</strong> I set the goal, directed AI assistants (Claude) that researched the hackathons, proposed the idea, and wrote the code, reviewed the app in Jira, and approved the submission.</p>
+    <p class="enlaces"><a href="https://devpost.com/software/relevo">Devpost</a> · <a href="https://juanporjuela.github.io/relevo">Site</a> · <a href="https://youtu.be/JLfDQFWwvFE">Video</a></p>
   </div>
 </article>
 
@@ -137,7 +164,7 @@
 <article>
   <h3><span lang="es">Sitio y agenda para un spa de mascotas</span><span lang="en">Website and booking for a pet spa</span><span class="anio">2026</span></h3>
   <div lang="es">
-    <p>Sitio web con agenda de servicios y pagos en línea para un spa de mascotas en Bogotá. El negocio y sus ingresos son del dueño; yo hice el desarrollo.</p>
+    <p>Sitio web con agenda de servicios y pagos en línea para un spa de mascotas en Bogotá. El negocio y sus ingresos son del dueño; yo hice el desarrollo con apoyo de asistentes de IA.</p>
     <ul>
       <li>Next.js desplegado en Cloudflare Workers (OpenNext) y base de datos Turso (libSQL).</li>
       <li>Pagos con Wompi, catálogo, agenda de servicios, panel de administración y reseñas.</li>
@@ -149,7 +176,7 @@
     <p class="enlaces"><a href="https://kiragopets.com">kiragopets.com</a></p>
   </div>
   <div lang="en">
-    <p>A website with service booking and online payments for a pet spa in Bogotá. The business and its revenue belong to the owner; I did the development.</p>
+    <p>A website with service booking and online payments for a pet spa in Bogotá. The business and its revenue belong to the owner; I did the development with the help of AI assistants.</p>
     <ul>
       <li>Next.js deployed on Cloudflare Workers (OpenNext) with a Turso (libSQL) database.</li>
       <li>Wompi payments, catalog, service booking, admin panel, and reviews.</li>
